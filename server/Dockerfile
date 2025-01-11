@@ -1,16 +1,12 @@
-FROM maven:3.8.5-openjdk-21 AS build
+FROM maven:3.8.5-openjdk-17 AS build
 
 WORKDIR /app
 
-COPY pom.xml .
-COPY src ./src
+COPY . .
 
 RUN mvn clean package -DskipTests
-RUN ls -l /app/target
 
-FROM openjdk:21-jdk-slim
-
-WORKDIR /app
+FROM openjdk:17-jdk-slim
 
 COPY --from=build /app/target/mentormate-server-0.0.1-SNAPSHOT.jar demo.jar
 
