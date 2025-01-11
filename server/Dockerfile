@@ -14,6 +14,9 @@ COPY src ./src
 # Build the application (skip tests for faster build)
 RUN mvn clean package -DskipTests
 
+# Debugging: List files in the target directory
+RUN ls -l /app/target
+
 # Runtime stage: Use OpenJDK 21 for running the app
 FROM openjdk:21-jdk-slim
 
