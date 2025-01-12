@@ -1,5 +1,10 @@
-# Use Maven with JDK 21 for the build stage
-FROM maven:3.8.5-openjdk-21 AS build
+# Use the latest Maven image with JDK 17 and manually install JDK 21
+FROM maven:3.8.5-openjdk-17 AS build
+
+# Install JDK 21 manually
+RUN apt-get update && apt-get install -y openjdk-21-jdk && \
+    update-alternatives --install /usr/bin/java java /usr/lib/jvm/java-21-openjdk-amd64/bin/java 1 && \
+    update-alternatives --set java /usr/lib/jvm/java-21-openjdk-amd64/bin/java
 
 # Set the working directory
 WORKDIR /app
