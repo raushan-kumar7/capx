@@ -65,6 +65,18 @@ public class StockController {
     }
   }
 
+  // Get a single Stock Data
+  @GetMapping("/{id}")
+  public ResponseEntity<ApiResponse> getStockById(@PathVariable Long id) {
+    try {
+      Stock stock = stockService.getStockById(id);
+      return ResponseEntity.ok(new ApiResponse(true, "Fetched stock successfully", stock));
+    } catch (RuntimeException e) {
+      ApiError apiError = new ApiError("Error", "Error fetching stock: " + e.getMessage());
+      return ResponseEntity.status(404).body(apiError);
+    }
+  }
+
   // Get Stock Summary
   @GetMapping("/summary")
   public ResponseEntity<ApiResponse> getStockSummary() {

@@ -4,7 +4,7 @@ import TopTradingCard from "./TopTradingCard";
 
 const MainSection = () => {
   return (
-    <div className="-z-10 relative"> {/* Ensure graph is behind sidebar */}
+    <div className="-z-10 relative">
       <h1 className="text-3xl font-semibold mb-4 text-gray-100">
         Welcome to the Dashboard
       </h1>

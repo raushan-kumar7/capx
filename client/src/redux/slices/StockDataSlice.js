@@ -33,7 +33,7 @@ const stockSliceData = createSlice({
       .addCase(getStockData.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-      })
+      });
   },
 });
 

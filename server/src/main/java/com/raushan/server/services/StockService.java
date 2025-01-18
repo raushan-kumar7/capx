@@ -52,6 +52,11 @@ public class StockService {
     return stockRepository.findAll();
   }
 
+  public Stock getStockById(Long id) {
+    return stockRepository.findById(id)
+      .orElseThrow(() -> new RuntimeException("Stock not found with id: " + id));
+  }
+
   public StockSummary getStockSummary() {
     List<Stock> stocks = stockRepository.findAll();
 

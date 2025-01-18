@@ -1,30 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ChartCard from "../components/ChatCard";
 import Card from "../components/Card";
 import StockData from "../components/Stock/StockData";
 import DailyStockGraph from "../components/Stock/DailyStockGraph";
+import { useDispatch, useSelector } from "react-redux";
+import { getStocks } from "../redux/slices/StockSlice";
+import { ClipLoader } from "react-spinners";
+import { MdOutlineAutoGraph } from "react-icons/md";
 
 const Home = () => {
-  const barChartOptions = {
-    chart: { background: "transparent", toolbar: { show: false } },
-    colors: ["#1abc9c", "#f39c12", "#3498db"],
-    xaxis: {
-      categories: [
-        "Oct 2019",
-        "Nov 2019",
-        "Dec 2019",
-        "Jan 2020",
-        "Feb 2020",
-        "Mar 2020",
-      ],
-    },
-    plotOptions: { bar: { columnWidth: "50%" } },
+  const dispatch = useDispatch();
+  const { stocks, loading, error } = useSelector((state) => state.stocks);
+
+  useEffect(() => {
+    dispatch(getStocks());
+  }, [dispatch]);
+
+  // Function to shuffle the array
+  const shuffleArray = (array) => {
+    let shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
   };
 
-  const barChartSeries = [
-    { name: "Income", data: [1500, 2000, 3000, 4000, 4500, 5000] },
-    { name: "Expense", data: [1200, 1800, 2800, 3500, 4200, 4700] },
-  ];
+  // Get 4 random stocks from the shuffled array
+  const randomStocks = loading ? [] : shuffleArray(stocks).slice(0, 4);
 
   const pieChartOptions = {
     labels: ["BTC", "USD", "BNB", "ETN", "Others"],
@@ -37,47 +40,40 @@ const Home = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
       {/* Cards */}
-      <div className="grid grid-cols-2 gap-4 md:col-span-2 lg:col-span-4">
-        <div className="ml-32 flex justify-between gap-12">
-          <Card
-            title="USD"
-            value="$3,124"
-            subtext="$34.56"
-            trend={3.1}
-            icon="💵"
-          />
-          <Card
-            title="EUR"
-            value="€4,038"
-            subtext="$81.59"
-            trend={-5.9}
-            icon="💶"
-          />
-          <Card
-            title="BTC"
-            value="6,023.94"
-            subtext="$5,376.56"
-            trend={2.8}
-            icon="₿"
-          />
-          <Card
-            title="ETH"
-            value="4,432.08"
-            subtext="$184.56"
-            trend={4.2}
-            icon="Ξ"
-          />
+      <div className="w-52 bg-gray-700 rounded-lg shadow-lg">
+        <div className="flex items-center justify-center">
+        <MdOutlineAutoGraph size={34} className="text-yellow-600"/>
+        <h1 className="text-white text-2xl text-center p-4 font-bold">Top Stocks</h1>
+        </div>
+      </div>
+      <div className="w-fullgrid grid-cols-2 gap-4 md:col-span-2 lg:col-span-4">
+        <div className="ml-5 flex justify-between gap-12">
+          {loading ? (
+            <div className="flex justify-center items-center w-full h-full">
+              <ClipLoader color="#ef7b00" size={50} /> {/* Spinner */}
+            </div>
+          ) : (
+            randomStocks?.map((stock, index) => (
+              <Card stock={stock} key={index} />
+            ))
+          )}
         </div>
       </div>
 
       {/* Stock Data */}
       <div className="w-full mt-6 md:col-span-2 lg:col-span-4">
-        <StockData />
+        {loading ? (
+          <div className="flex justify-center items-center w-full h-full">
+            <ClipLoader color="#ef7b00" size={50} />
+          </div>
+        ) : (
+          <StockData />
+        )}
       </div>
 
       {/* Charts */}
       <div className="md:col-span-2 lg:col-span-2">
-        <DailyStockGraph/>
+        <DailyStockGraph />
       </div>
       <div className="md:col-span-2 lg:col-span-2">
         <ChartCard
