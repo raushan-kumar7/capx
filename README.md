@@ -1,4 +1,5 @@
 # **CAPX - Trading Platform : SERVER - BACKEND_API_SPRING_BOOT**
+
 **CapX** is a user-friendly trading platform designed for efficient stock management. Users can seamlessly perform CRUD operations—add, update, retrieve, and delete stocks. With an intuitive interface and streamlined functionality, CapX empowers traders to manage their portfolios effectively, stay updated, and make informed decisions. Perfect for beginners and experts alike, CapX simplifies trading and portfolio management.
 ---
 

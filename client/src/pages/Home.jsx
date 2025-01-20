@@ -13,7 +13,7 @@ const Home = () => {
   const { stocks, loading, error } = useSelector((state) => state.stocks);
 
   useEffect(() => {
-    dispatch(getStocks());
+    dispatch(getStocks())
   }, [dispatch]);
 
   // Function to shuffle the array
