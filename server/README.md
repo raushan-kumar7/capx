@@ -1,6 +1,6 @@
 # **CAPX - Trading Platform : SERVER - BACKEND_API_SPRING_BOOT**
-**CapX** is a user-friendly trading platform designed for efficient stock management. Users can seamlessly perform CRUD operations—add, update, retrieve, and delete stocks. With an intuitive interface and streamlined functionality, CapX empowers traders to manage their portfolios effectively, stay updated, and make informed decisions. Perfect for beginners and experts alike, CapX simplifies trading and portfolio management.
----
+
+The **CapX** is a user-friendly trading platform designed for efficient stock management. Users can seamlessly perform CRUD operations—add, update, retrieve, and delete stocks. With an intuitive interface and streamlined functionality, CapX empowers traders to manage their portfolios effectively, stay updated, and make informed decisions. Perfect for beginners and experts alike, CapX simplifies trading and portfolio management.
 
 #### **Deployed Link**
 [![Deployed Link](https://img.shields.io/badge/Deployed_Link-0099ff?style=for-the-badge&logo=googlecloud&logoColor=white)](https://capx-server.onrender.com)
@@ -84,3 +84,19 @@ To set up the project, follow these steps:
 - Add user authentication and authorization.
 - Introduce detailed analytics and reporting features.
 - Enhance currency conversion capabilities with additional options.
+
+### 💬 **Feedback**
+
+If you have any feedback or suggestions, feel free to open an issue or submit a pull request. Contributions are always welcome!
+
+---
+
+### 📄 **License**
+
+This project is licensed under the MIT License.
+
+---
+
+### 🧑‍💻 **Author**
+
+Developed with ❤️ by **[Raushan](https://github.com/raushan-kumar7)** | **[Portfolio](https://raushan-kumar.onrender.com)**.
