@@ -8,7 +8,6 @@ export const getDailyStockData = createAsyncThunk(
     const res = await axios.get(
       `${BASE_API_URL}/crypto/daily-stock-price?from=${from}&to=${to}&date=${date}`
     );
-    console.log("Data from Daily Stock: ", res.data.data);
     return res.data.data;
   }
 );
